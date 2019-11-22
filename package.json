@@ -1,0 +1,28 @@
+{
+  "name": "node-red-contrib-ftrack",
+  "version": "0.5.0",
+  "description": "node red nodes to connect with ftrack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/l_angeli/node-red-contrib-ftrack.git"
+  },
+  "keywords": [
+    "ftrack",
+    "node-red"
+  ],
+  "author": "lorenzo.angeli@ftrack.com",
+  "license": "Apache-2.0",
+  "homepage": "https://bitbucket.org/l_angeli/node-red-contrib-ftrack#readme",
+  "node-red":{
+    "nodes":{
+      "ftrack-session": "ftrack-session.js"
+    }
+  },
+  "dependencies":{
+    "ftrack-javascript-api":"git+https://git@bitbucket.org/ftrack/ftrack-javascript-api.git#0.7.1"
+  }
+}
