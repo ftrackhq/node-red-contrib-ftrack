@@ -18,16 +18,14 @@ module.exports = function(RED) {
             });
 
             node.on('input', function(msg) {
+                console.log('running query', msg.payload)
                 var request = this.session.query(msg.payload);
                 
                 request.then(function(response){
-                    results = []
-                    response.data.forEach(function (result) {
-                        results.push(result)
-                    });
-
-                    msg.payload = results;
+                    msg.payload = response.data;
                     node.send(msg);
+                }).catch(function(error){
+                    node.error(error)
                 })
             });
         }
