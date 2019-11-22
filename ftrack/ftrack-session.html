@@ -6,6 +6,7 @@
         outputs:1,
         defaults: {
             server: {value:"", type:"ftrack-config"},
+            name: {value:""}
 		},
         icon: "ftrack.png",
         label: function() {
@@ -21,6 +22,10 @@
     <div class="form-row">
         <label for="node-input-server"><i class="icon-bookmark"></i> ftrack config</label>
         <input type="text" id="node-input-server">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-bookmark"></i> node name</label>
+        <input type="text" id="node-input-name">
     </div>
 </script>
 
