@@ -1,3 +1,4 @@
+require('isomorphic-fetch');
 var ftrack = require('ftrack-javascript-api');
 
 

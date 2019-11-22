@@ -21,6 +21,7 @@
     }
   },
   "dependencies": {
+    "isomorphic-fetch":  "latest",
     "ftrack-javascript-api": "git+https://git@bitbucket.org/ftrack/ftrack-javascript-api.git#0.7.1"
   }
 }
