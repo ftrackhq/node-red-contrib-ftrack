@@ -2,7 +2,7 @@ var ftrack = require('ftrack-javascript-api');
 
 
 module.exports = function(RED) {
-    function FtrackSession(config) {
+    function FtrackSessionNode(config) {
         RED.nodes.createNode(this,config);
         this.ftrack_config = RED.nodes.getNode(config.server)
 
@@ -13,5 +13,5 @@ module.exports = function(RED) {
 
     }
     RED.nodes.registerType(
-        "ftrack-session", FtrackSession);
+        "ftrack-session", FtrackSessionNode);
 }
