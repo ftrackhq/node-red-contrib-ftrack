@@ -16,8 +16,8 @@
   "homepage": "https://bitbucket.org/l_angeli/node-red-contrib-ftrack#readme",
   "node-red": {
     "nodes": {
-      "ftrack-session": "ftrack-session.js",
-      "ftrack-config": "ftrack-config.js"
+      "ftrack-session": "ftrack/ftrack-session.js",
+      "ftrack-config": "ftrack/ftrack-config.js"
     }
   },
   "dependencies": {
