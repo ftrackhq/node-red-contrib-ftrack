@@ -14,12 +14,13 @@
     "node-red"
   ],
   "homepage": "https://bitbucket.org/l_angeli/node-red-contrib-ftrack#readme",
-  "node-red":{
-    "nodes":{
-      "ftrack-session": "ftrack-session.js"
+  "node-red": {
+    "nodes": {
+      "ftrack-session": "ftrack-session.js",
+      "ftrack-config": "ftrack-config.js"
     }
   },
-  "dependencies":{
-    "ftrack-javascript-api":"git+https://git@bitbucket.org/ftrack/ftrack-javascript-api.git#0.7.1"
+  "dependencies": {
+    "ftrack-javascript-api": "git+https://git@bitbucket.org/ftrack/ftrack-javascript-api.git#0.7.1"
   }
 }

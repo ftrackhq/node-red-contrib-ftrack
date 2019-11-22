@@ -1,12 +1,12 @@
 <script type="text/javascript">
     RED.nodes.registerType('ftrack-session',{
-        category: 'function',
+        category: 'ftrack',
         color: '#a6bbcf',
-        defaults: {
-            name: {value:""}
-        },
         inputs:1,
         outputs:1,
+        defaults: {
+            server: {value:"", type:"ftrack-config"},
+		},
         icon: "ftrack.png",
         label: function() {
             return this.name||"ftrack-session";
@@ -17,8 +17,8 @@
 
 <script type="text/x-red" data-template-name="ftrack-session">
     <div class="form-row">
-        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
-        <input type="text" id="node-input-name" placeholder="Name">
+        <label for="node-input-server"><i class="icon-bookmark"></i> Server Config</label>
+        <input type="text" id="node-input-server">
     </div>
 </script>
 

@@ -1,0 +1,31 @@
+<script type="text/javascript">
+    RED.nodes.registerType('ftrack-config',{
+        category: 'config',
+        defaults: {
+            server_url: {value:"http://localhost", required:true},
+            api_user: {value:"", required:true},
+            api_key: {value:"", required:true},
+		},
+        label: function() {
+            return this.server_url;
+        },
+    });
+</script>
+
+
+<script type="text/x-red" data-template-name="ftrack-config">
+    <div class="form-row">
+        <label for="node-input-server_url"><i class="icon-bookmark"></i> server_url</label>
+        <input type="text" id="node-input-server_url">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-api_user"><i class="icon-bookmark"></i> api_user</label>
+        <input type="text" id="node-input-api_user">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-api_key"><i class="icon-bookmark"></i> api_key</label>
+        <input type="password" id="node-input-api_key">
+    </div>
+</script>
