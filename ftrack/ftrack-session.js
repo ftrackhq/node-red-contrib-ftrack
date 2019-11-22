@@ -17,11 +17,17 @@ module.exports = function(RED) {
                 console.log('API session initialized successfully.');
             });
 
-            this.on('input', function(msg) {
-                console.log('payload', msg.payload)
+            node.on('input', function(msg) {
                 var request = this.session.query(msg.payload);
+                
                 request.then(function(response){
-                    node.send(response.data);
+                    results = []
+                    response.data.forEach(function (result) {
+                        results.push(result)
+                    });
+
+                    msg.payload = results;
+                    node.send(msg);
                 })
             });
         }
