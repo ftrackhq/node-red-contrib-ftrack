@@ -15,6 +15,8 @@ module.exports = function(RED) {
             )
             this.session.initializing.then(function () {
                 console.log('API session initialized successfully.');
+                node.status({fill:"green",shape:"dot",text:"connected"});
+
             });
 
             node.on('input', function(msg) {
@@ -29,6 +31,8 @@ module.exports = function(RED) {
                     node.error(error)
                 })
             });
+        } else {
+            node.status({fill:"red",shape:"ring",text:"disconnected"});
         }
 
     }
