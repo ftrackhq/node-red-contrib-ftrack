@@ -1,0 +1,28 @@
+<script type="text/javascript">
+    RED.nodes.registerType('ftrack-session',{
+        category: 'function',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "ftrack.png",
+        label: function() {
+            return this.name||"ftrack-session";
+        }
+    });
+</script>
+
+
+<script type="text/x-red" data-template-name="ftrack-session">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+
+<script type="text/x-red" data-help-name="ftrack-session">
+    <p>Provide ftrack session to connect with ftrack server</p>
+</script>
