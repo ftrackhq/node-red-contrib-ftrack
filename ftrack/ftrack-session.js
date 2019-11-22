@@ -22,6 +22,7 @@ module.exports = function(RED) {
                 var request = this.session.query(msg.payload);
                 
                 request.then(function(response){
+                    msg.topic='ftrack.query.result';
                     msg.payload = response.data;
                     node.send(msg);
                 }).catch(function(error){
