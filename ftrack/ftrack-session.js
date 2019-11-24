@@ -6,7 +6,7 @@ module.exports = function(RED) {
         RED.nodes.createNode(this,config);
         this.ftrack_config = RED.nodes.getNode(config.server)
         var node = this;
-
+        this.session = null;
         if (this.ftrack_config){
             this.session = new ftrack.Session(
                 this.ftrack_config.server_url,
@@ -16,21 +16,13 @@ module.exports = function(RED) {
             this.session.initializing.then(function () {
                 console.log('API session initialized successfully.');
                 node.status({fill:"green",shape:"dot",text:"connected"});
-
             });
 
             node.on('input', function(msg) {
-                console.log('running query', msg.payload)
-                var request = this.session.query(msg.payload);
-                
-                request.then(function(response){
-                    msg.topic='ftrack.query.result';
-                    msg.payload = response.data;
-                    node.send(msg);
-                }).catch(function(error){
-                    node.error(error)
-                })
-            });
+                msg.ftrack_session = this.session
+                node.send(msg);        
+            })
+            
         } else {
             node.status({fill:"red",shape:"ring",text:"disconnected"});
         }

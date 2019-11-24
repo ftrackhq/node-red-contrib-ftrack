@@ -1,0 +1,68 @@
+<script type="text/javascript">
+    RED.nodes.registerType('ftrack-op',{
+        category: 'ftrack',
+        color: '#935ba2',
+        inputs:1,
+        outputs:1,
+        defaults: {
+            name: {value:""},
+            op: {value:"query"},
+            payload: {'value': "", validate:function(v) {
+                var ptype = $("#node-input-payloadType").val() || this.payloadType;
+                return true;
+            }},
+            payloadType: {value:"str"}
+		},
+        icon: "ftrack.png",
+        label: function() {
+            return this.op +":"+ this.name || "ftrack-op";
+        },
+        inputLabels: "session",
+        outputLabels: "result",
+        oneditprepare: function() {
+            if (this.payloadType === 'string' || this.payloadType === 'none') {
+                this.payloadType = "str";
+            }
+
+            $("#node-input-payloadType").val(this.payloadType);
+            $("#node-input-payload").typedInput({
+                default: 'str',
+                typeField: $("#node-input-payloadType"),
+                types:['msg','str']
+            });
+        },
+        oneditsave: function() {
+            $("#node-input-payload").val(this.payload.getValue())
+            delete this.payload;
+        },
+    });
+</script>
+
+
+<script type="text/x-red" data-template-name="ftrack-op">
+    <div class="form-row">
+        <label for="node-input-payloadType"><i class="fa fa-envelope"></i> Query from </label>
+        <input type="text" id="node-input-payload" style="width:70%">
+        <input type="hidden" id="node-input-payloadType">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-op"><i class="fa fa-calculator"></i> Operation</label>
+        <select id="node-input-op">
+            <option value="query">Query</option>
+            <option value="thumbnail">Thumbnail Url</option>
+
+        </select>
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+</script>
+
+
+<script type="text/x-red" data-help-name="ftrack-op">
+    <p>Provide ftrack session to connect with ftrack server</p>
+</script>
