@@ -17,7 +17,8 @@
   "node-red": {
     "nodes": {
       "ftrack-session": "ftrack/ftrack-session.js",
-      "ftrack-config": "ftrack/ftrack-config.js"
+      "ftrack-config": "ftrack/ftrack-config.js",
+      "ftrack-op": "ftrack/ftrack-op.js"
     }
   },
   "dependencies": {

@@ -1,0 +1,48 @@
+<script type="text/javascript">
+    RED.nodes.registerType('ftrack-op',{
+        category: 'ftrack',
+        color: '#935ba2',
+        inputs:1,
+        outputs:1,
+        defaults: {
+            query: {value:""},
+            name: {value:""},
+            op: {value:"query"}
+		},
+        icon: "ftrack.png",
+        label: function() {
+            return this.op + "::"+this.query||"ftrack-op";
+        },
+        inputLabels: "session",
+        outputLabels: "result"
+    });
+</script>
+
+
+<script type="text/x-red" data-template-name="ftrack-op">
+    <div class="form-row">
+        <label for="node-input-query"><i class="icon-tag"></i> query</label>
+        <input type="text" id="node-input-query" placeholder="select name from Project">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-op"><i class="fa fa-calculator"></i> Operation</label>
+        <select id="node-input-op">
+            <option value="query">Query</option>
+            <option value="create">Create</option>
+            <option value="delete">Delete</option>
+            <option value="update">Update</option>
+            <option value="thumbnail">Thumbnail Url</option>
+            <option value="component">Component Url</option>
+
+        </select>
+    </div>
+</script>
+
+
+<script type="text/x-red" data-help-name="ftrack-op">
+    <p>Provide ftrack session to connect with ftrack server</p>
+</script>
