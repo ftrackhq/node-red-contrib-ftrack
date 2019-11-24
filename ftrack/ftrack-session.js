@@ -20,7 +20,6 @@ module.exports = function(RED) {
 
             node.on('input', function(msg) {
                 msg = {ftrack_session: this.session}
-                console.log('msg', msg)
                 node.send(msg);        
             })
             

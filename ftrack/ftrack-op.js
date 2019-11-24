@@ -3,10 +3,10 @@ module.exports = function(RED) {
         RED.nodes.createNode(this,config);
         var node = this;
         var op = config.op
+        var payloadType = config.payloadType
+        var payload = config.payload
 
-        var query = function(msg){
-            var command = msg.payload
-            console.log('query', command)
+        var query = function(msg, command){
             var request = msg.ftrack_session.query(command);
                 
             request.then(function(response){
@@ -18,9 +18,7 @@ module.exports = function(RED) {
             })
         }
 
-        var thumbnail = function(msg){
-            var command = msg.payload
-            console.log('thumbnail', command)
+        var thumbnail = function(msg, command){
             var request = msg.ftrack_session.thumbnailUrl(command);
             msg.topic='ftrack.query.result';
             msg.payload = request;
@@ -28,11 +26,19 @@ module.exports = function(RED) {
         }
 
         node.on('input', function(msg) {
-
+            if (payloadType === "str"){
+                command = payload
+            } else {
+                console.log(payload)
+                comand = RED.util.getMessageProperty(msg, payload)          
+            }
+            console.log('payloadType', payloadType)
+            console.log('command', command)
+    
             switch(op)
             {
-                case "query":query(msg);
-                case "thumbnail": thumbnail(msg);
+                case "query":query(msg, command);
+                case "thumbnail": thumbnail(msg, command);
             }
 
         });

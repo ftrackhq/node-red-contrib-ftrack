@@ -15,7 +15,7 @@
 		},
         icon: "ftrack.png",
         label: function() {
-            return this.op || this.name || "ftrack-op";
+            return this.op +":"+ this.name || "ftrack-op";
         },
         inputLabels: "session",
         outputLabels: "result",
@@ -30,14 +30,18 @@
                 typeField: $("#node-input-payloadType"),
                 types:['msg','str']
             });
-        }
+        },
+        oneditsave: function() {
+            $("#node-input-payload").val(this.payload.getValue())
+            delete this.payload;
+        },
     });
 </script>
 
 
 <script type="text/x-red" data-template-name="ftrack-op">
     <div class="form-row">
-        <label for="node-input-payloadType"><i class="fa fa-envelope"></i> Payload </label>
+        <label for="node-input-payloadType"><i class="fa fa-envelope"></i> Query from </label>
         <input type="text" id="node-input-payload" style="width:70%">
         <input type="hidden" id="node-input-payloadType">
     </div>
@@ -46,11 +50,7 @@
         <label for="node-input-op"><i class="fa fa-calculator"></i> Operation</label>
         <select id="node-input-op">
             <option value="query">Query</option>
-            <option value="create">Create</option>
-            <option value="delete">Delete</option>
-            <option value="update">Update</option>
             <option value="thumbnail">Thumbnail Url</option>
-            <option value="component">Component Url</option>
 
         </select>
     </div>
