@@ -5,29 +5,43 @@
         inputs:1,
         outputs:1,
         defaults: {
-            query: {value:""},
             name: {value:""},
-            op: {value:"query"}
+            op: {value:"query"},
+            payload: {'value': "", validate:function(v) {
+                var ptype = $("#node-input-payloadType").val() || this.payloadType;
+                return true;
+            }},
+            payloadType: {value:"str"}
 		},
         icon: "ftrack.png",
         label: function() {
-            return this.op + "::"+this.query||"ftrack-op";
+            return this.op || this.name || "ftrack-op";
         },
         inputLabels: "session",
-        outputLabels: "result"
+        outputLabels: "result",
+        oneditprepare: function() {
+            if (this.payloadType === 'string' || this.payloadType === 'none') {
+                this.payloadType = "str";
+            }
+
+            $("#node-input-payloadType").val(this.payloadType);
+            $("#node-input-payload").typedInput({
+                default: 'str',
+                typeField: $("#node-input-payloadType"),
+                types:['msg','str']
+            });
+        }
     });
 </script>
 
 
 <script type="text/x-red" data-template-name="ftrack-op">
     <div class="form-row">
-        <label for="node-input-query"><i class="icon-tag"></i> query</label>
-        <input type="text" id="node-input-query" placeholder="select name from Project">
+        <label for="node-input-payloadType"><i class="fa fa-envelope"></i> Payload </label>
+        <input type="text" id="node-input-payload" style="width:70%">
+        <input type="hidden" id="node-input-payloadType">
     </div>
-    <div class="form-row">
-        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
-        <input type="text" id="node-input-name" placeholder="Name">
-    </div>
+
     <div class="form-row">
         <label for="node-input-op"><i class="fa fa-calculator"></i> Operation</label>
         <select id="node-input-op">
@@ -40,6 +54,12 @@
 
         </select>
     </div>
+
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
 </script>
 
 

@@ -5,7 +5,9 @@ module.exports = function(RED) {
         var op = config.op
 
         var query = function(msg){
-            var request = msg.ftrack_session.query(config.query);
+            var command = msg.payload
+            console.log('query', command)
+            var request = msg.ftrack_session.query(command);
                 
             request.then(function(response){
                 msg.topic='ftrack.query.result';
@@ -16,11 +18,21 @@ module.exports = function(RED) {
             })
         }
 
+        var thumbnail = function(msg){
+            var command = msg.payload
+            console.log('thumbnail', command)
+            var request = msg.ftrack_session.thumbnailUrl(command);
+            msg.topic='ftrack.query.result';
+            msg.payload = request;
+            node.send(msg);
+        }
+
         node.on('input', function(msg) {
 
             switch(op)
             {
                 case "query":query(msg);
+                case "thumbnail": thumbnail(msg);
             }
 
         });
