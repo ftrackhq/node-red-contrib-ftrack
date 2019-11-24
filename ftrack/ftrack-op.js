@@ -27,11 +27,11 @@ module.exports = function(RED) {
 
         node.on('input', function(msg) {
             var command = null;
-
+            
             if (payloadType === "str"){
                 command = payload
             } else {
-                comand = RED.util.getObjectProperty(msg, payload) 
+                command = RED.util.getMessageProperty(msg, payload) 
                 console.log('command', command)
             }
             
