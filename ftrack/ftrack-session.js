@@ -19,7 +19,7 @@ module.exports = function(RED) {
             });
 
             node.on('input', function(msg) {
-                msg = {ftrack_session: this.session}
+                msg.ftrack_session = this.session
                 node.send(msg);        
             })
             
