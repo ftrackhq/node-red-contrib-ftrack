@@ -21,7 +21,7 @@ module.exports = function(RED) {
         var thumbnail = function(msg, command){
             var request = msg.ftrack_session.thumbnailUrl(command);
             msg.topic='ftrack.query.result';
-            msg.payload = request;
+            msg.payload = {'url':request};
             node.send(msg);
         }
 
@@ -32,10 +32,8 @@ module.exports = function(RED) {
                 command = payload
             } else {
                 command = RED.util.getMessageProperty(msg, payload) 
-                console.log('command', command)
             }
             
-            console.log('payloadType', payloadType)
     
             switch(op)
             {
