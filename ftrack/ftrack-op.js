@@ -26,19 +26,21 @@ module.exports = function(RED) {
         }
 
         node.on('input', function(msg) {
+            var command = null;
+
             if (payloadType === "str"){
                 command = payload
             } else {
-                console.log(payload)
-                comand = RED.util.getMessageProperty(msg, payload)          
+                comand = RED.util.getObjectProperty(msg, payload) 
+                console.log('command', command)
             }
+            
             console.log('payloadType', payloadType)
-            console.log('command', command)
     
             switch(op)
             {
-                case "query":query(msg, command);
-                case "thumbnail": thumbnail(msg, command);
+                case "query":query(msg, command); break;
+                case "thumbnail": thumbnail(msg, command) ;break;
             }
 
         });
